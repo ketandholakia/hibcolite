@@ -2,6 +2,8 @@
 // src/pages/index.astro
 import MainLayout from '../layouts/MainLayout.astro';
 import HeroSlider from '../components/HeroSlider.astro';
+import { Image } from 'astro:assets';
+import banner01 from '../assets/img/banner01.jpg';
 ---
 
 <MainLayout title="Home Page">
@@ -16,7 +18,7 @@ import HeroSlider from '../components/HeroSlider.astro';
       <div class="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 mb-16 border border-gray-100">
         <div class="grid md:grid-cols-2">
           <div class="relative h-64 md:h-auto group overflow-hidden">
-            <img src="/img/banner01.jpg" alt="Hindustan Backlite Products" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <Image src={banner01} alt="Hindustan Backlite Products" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div class="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-transparent"></div>
           </div>
           <div class="p-8 md:p-12 flex flex-col justify-center">

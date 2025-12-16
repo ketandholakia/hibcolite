@@ -3,22 +3,29 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Image } from 'astro:assets';
+import banner01 from '../assets/img/banner01.jpg';
+import banner02 from '../assets/img/banner02.jpg';
 
 // Define your slide data here.
 const slides = [
   {
     // Local Image
-    image: '/img/banner01.jpg',
-    
+    title: "Premium Moulding Powders",
+    description: "High-quality Phenolic Moulding Compounds for diverse industrial applications.",
+    image: banner01,
   },
   {
     // Unsplash Image: Code / Technology
     // Local Image
-    image: '/img/banner02.jpg',
-    
+    title: "Excellence in Thermosets",
+    description: "Innovative solutions and sustainable practices for a better future.",
+    image: banner02,
   }
   
 ];
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <div class="swiper mySwiper h-[500px] md:h-[600px] w-full bg-gray-900">
@@ -27,10 +34,9 @@ const slides = [
     {slides.map((slide) => (
       <div class="swiper-slide relative flex items-center justify-center overflow-hidden">
         
-        <img 
+        <Image 
             src={slide.image} 
-            alt={slide.title} 
-            loading="lazy"
+            alt={slide.title || "Hero Slider Image"}
             class="absolute inset-0 w-full h-full object-cover object-center"
         />
 
@@ -41,7 +47,7 @@ const slides = [
           <p class="text-lg md:text-xl text-gray-200 mb-8 drop-shadow-md">
             {slide.description}
           </p>
-          <a href="/contact" class="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-lg hover:shadow-blue-600/30">
+          <a href={`${base}contact-us`} class="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-lg hover:shadow-blue-600/30">
             Get Started
           </a>
         </div>

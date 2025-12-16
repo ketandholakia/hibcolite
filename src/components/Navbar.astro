@@ -1,6 +1,16 @@
 ---
 // src/components/Navbar.astro
+import { Image } from 'astro:assets';
+import logoImage from '../assets/img/logo.png';
 const pathname = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
+
+// Helper to add base path to links (e.g., "/" becomes "/hibcolite/")
+const resolvePath = (path: string) => {
+  const basePath = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${basePath}${cleanPath}`;
+};
 
 // Updated Menu Structure to match your new pages exactly
 const navItems = [
@@ -35,9 +45,9 @@ const navItems = [
     <div class="flex justify-between items-center h-full">
       
       <div class="flex-shrink-0 flex items-center">
-        <a href="/" class="flex items-center gap-2">
-          <img 
-            src="/img/logo.png" 
+        <a href={resolvePath('/')} class="flex items-center gap-2">
+          <Image 
+            src={logoImage} 
             alt="HibcoLite Logo" 
             class="h-14 w-auto" 
           />
@@ -55,7 +65,7 @@ const navItems = [
                 <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
             ) : (
-              <a href={item.href} class={`px-3 py-2 text-sm font-bold uppercase transition ${pathname === item.href ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}>
+              <a href={resolvePath(item.href)} class={`px-3 py-2 text-sm font-bold uppercase transition ${pathname === resolvePath(item.href) || pathname === resolvePath(item.href) + '/' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}>
                 {item.text}
               </a>
             )}
@@ -65,7 +75,7 @@ const navItems = [
               <div class="absolute left-0 mt-0 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
                 <div class="py-1">
                   {item.children.map((child) => (
-                    <a href={child.href} class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                    <a href={resolvePath(child.href)} class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">
                       {child.text}
                     </a>
                   ))}
@@ -102,7 +112,7 @@ const navItems = [
               {/* Submenu (Mobile) */}
               <div id={`mobile-submenu-${index}`} class="hidden pl-4 space-y-1 bg-gray-50">
                 {item.children.map((child) => (
-                  <a href={child.href} class="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 rounded-md">
+                  <a href={resolvePath(child.href)} class="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 rounded-md">
                     {child.text}
                   </a>
                 ))}
@@ -110,7 +120,7 @@ const navItems = [
             </div>
           ) : (
             // Standard Link (Mobile)
-            <a href={item.href} class="block px-3 py-3 text-base font-bold text-gray-700 hover:bg-gray-50 rounded-md uppercase">
+            <a href={resolvePath(item.href)} class="block px-3 py-3 text-base font-bold text-gray-700 hover:bg-gray-50 rounded-md uppercase">
               {item.text}
             </a>
           )}

@@ -1,0 +1,150 @@
+---
+// src/components/Navbar.astro
+const pathname = Astro.url.pathname;
+
+// Updated Menu Structure to match your new pages exactly
+const navItems = [
+  { href: '/', text: 'HOME' },
+  { 
+    text: 'ABOUT US', 
+    children: [
+      // Links to src/pages/company-profile.astro
+      { href: '/company-profile', text: 'COMPANY PROFILE' },
+      // Links to src/pages/r-d.astro
+      { href: '/r-d', text: 'R & D' }
+    ]
+  },
+  { 
+    text: 'OUR PRODUCTS', 
+    children: [
+      // Links to src/pages/p-f-moulding-powder.astro
+      { href: '/p-f-moulding-powder', text: 'P. F. MOULDING POWDER' },
+      // Links to src/pages/color-grade.astro
+      { href: '/color-grade', text: 'COLOR GRADE' }
+    ]
+  },
+  // Links to src/pages/career.astro
+  { href: '/career', text: 'CAREERS' },
+  // Links to src/pages/contact-us.astro
+  { href: '/contact-us', text: 'CONTACT US' },
+];
+---
+
+<header class="bg-white shadow-md fixed w-full top-0 z-50 h-20">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <div class="flex justify-between items-center h-full">
+      
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="flex items-center gap-2">
+          <img 
+            src="/img/logo.png" 
+            alt="HibcoLite Logo" 
+            class="h-14 w-auto" 
+          />
+          
+        </a>
+      </div>
+
+      <div class="hidden md:flex md:items-center md:space-x-1">
+        {navItems.map((item) => (
+          <div class="relative group">
+            {/* Top Level Item */}
+            {item.children ? (
+              <button class="flex items-center px-3 py-2 text-sm font-bold text-gray-700 hover:text-blue-600 transition uppercase">
+                {item.text}
+                <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+            ) : (
+              <a href={item.href} class={`px-3 py-2 text-sm font-bold uppercase transition ${pathname === item.href ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}>
+                {item.text}
+              </a>
+            )}
+
+            {/* Dropdown Menu */}
+            {item.children && (
+              <div class="absolute left-0 mt-0 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
+                <div class="py-1">
+                  {item.children.map((child) => (
+                    <a href={child.href} class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">
+                      {child.text}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 h-screen overflow-y-auto pb-20">
+    <div class="px-4 pt-2 pb-4 space-y-1">
+      {navItems.map((item, index) => (
+        <div>
+          {item.children ? (
+            // Parent Item (Mobile)
+            <div>
+              <button 
+                class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-base font-bold text-gray-700 hover:bg-gray-50 rounded-md uppercase"
+                data-target={`mobile-submenu-${index}`}
+              >
+                {item.text}
+                <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              
+              {/* Submenu (Mobile) */}
+              <div id={`mobile-submenu-${index}`} class="hidden pl-4 space-y-1 bg-gray-50">
+                {item.children.map((child) => (
+                  <a href={child.href} class="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 rounded-md">
+                    {child.text}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            // Standard Link (Mobile)
+            <a href={item.href} class="block px-3 py-3 text-base font-bold text-gray-700 hover:bg-gray-50 rounded-md uppercase">
+              {item.text}
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile Menu Logic
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  const dropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+
+  dropdownBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const button = e.currentTarget as HTMLButtonElement;
+      const targetId = button.getAttribute('data-target');
+      const targetMenu = document.getElementById(targetId!);
+      const arrow = button.querySelector('svg');
+
+      targetMenu?.classList.toggle('hidden');
+      
+      if (targetMenu?.classList.contains('hidden')) {
+        arrow?.classList.remove('rotate-180');
+      } else {
+        arrow?.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

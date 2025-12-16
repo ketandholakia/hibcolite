@@ -1,0 +1,22 @@
+---
+// src/pages/dashboard.astro
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="User Dashboard">
+
+  <script slot="head" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div slot="actions" class="flex gap-2">
+    <button class="px-3 py-1 bg-gray-200 rounded text-sm">Settings</button>
+    <button class="px-3 py-1 bg-red-500 text-white rounded text-sm">Logout</button>
+  </div>
+
+  <h1 class="text-3xl font-bold mb-4">Dashboard</h1>
+  <p>Because we added the Chart.js script in the head slot above, we can use it here.</p>
+  
+  <div class="mt-8 p-6 bg-white rounded shadow h-64 flex items-center justify-center text-gray-400">
+    [Chart would render here]
+  </div>
+
+</MainLayout>

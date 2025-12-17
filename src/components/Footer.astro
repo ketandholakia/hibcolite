@@ -1,6 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../assets/img/logo.png';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import img1 from '../assets/img/1-1024x229.png';
+import img2 from '../assets/img/2-1024x229.png';
+import img3 from '../assets/img/3-1024x229.png';
+import img4 from '../assets/img/4-1024x229.png';
+import img5 from '../assets/img/5-1024x229.png';
+import img6 from '../assets/img/6-1024x229.png';
+import img7 from '../assets/img/7-1024x229.png';
+
 const currentYear = new Date().getFullYear();
 const base = import.meta.env.BASE_URL;
 
@@ -9,6 +20,8 @@ const resolvePath = (path: string) => {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   return `${basePath}${cleanPath}`;
 };
+
+const sliderImages = [img1, img2, img3, img4, img5, img7, img6];
 ---
 
 <footer class="relative bg-slate-900 dark:bg-slate-800 text-gray-200 dark:text-gray-200">    
@@ -17,12 +30,12 @@ const resolvePath = (path: string) => {
             <div class="col-span-12">
                 <div class="py-[60px] px-0">
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
-                        <div class="lg:col-span-4 md:col-span-12">
+                        <div class="lg:col-span-3 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none">
                                 <img src="/assets/images/logo-light.png" alt="" class="block" />
                                 <Image src={logoImage} alt="HibcoLite Logo" class="block h-14 w-auto" />
                             </a>
-                            
+                            <p class="mt-6 text-gray-300">Hindustan Backlite Company is a leading manufacturer and exporter of thermosetting P.F. Moulding powder and P.F. Resin in the brand name Hibcolite.</p>
                         </div><!--end col-->
                 
                         <div class="lg:col-span-2 md:col-span-4">
@@ -36,12 +49,28 @@ const resolvePath = (path: string) => {
                             </ul>
                         </div><!--end col-->
                 
-                        <div class="lg:col-span-3 md:col-span-4">
+                        <div class="lg:col-span-2 md:col-span-4">
                             <h5 class="tracking-[1px] text-gray-100 font-semibold">Our Products</h5>
                             <ul class="list-none footer-list mt-6">
                                 <li><a href={resolvePath('/p-f-moulding-powder')} class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i> P. F. Moulding Powder</a></li>
                                 <li class="mt-[10px]"><a href={resolvePath('/color-grade')} class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i> Color Grade</a></li>
                             </ul>
+                        </div><!--end col-->
+
+                        <div class="lg:col-span-5 md:col-span-4">
+                            <h5 class="tracking-[1px] text-gray-100 font-semibold">Gallery</h5>
+                            <div class="swiper footerSwiper mt-6 w-full rounded-lg shadow-md overflow-hidden bg-gray-800">
+                                <div class="swiper-wrapper">
+                                    {sliderImages.map((image) => (
+                                    <div class="swiper-slide">
+                                        <Image src={image} alt="Footer Gallery" class="w-full h-64 object-cover" />
+                                    </div>
+                                    ))}
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div><!--end col-->
 
                     </div><!--end grid-->
@@ -62,3 +91,34 @@ const resolvePath = (path: string) => {
         </div><!--end container-->
     </div>
 </footer>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  new Swiper(".footerSwiper", {
+    modules: [Navigation, Pagination, Autoplay],
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+<style>
+  :global(.footerSwiper .swiper-button-next), :global(.footerSwiper .swiper-button-prev) {
+    color: #2563eb; /* Tailwind blue-600 */
+  }
+  :global(.footerSwiper .swiper-pagination-bullet-active) {
+    background-color: #2563eb;
+  }
+</style>

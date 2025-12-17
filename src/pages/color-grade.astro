@@ -122,7 +122,18 @@ const sliderImages = [
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{product.id}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{product.grade}</td>
-                        <td class="px-6 py-4">{product.application}</td>
+                        <td class="px-6 py-4 min-w-[200px] md:min-w-0">
+                            <div class="md:hidden">
+                                <span class="short-text">{product.application.length > 60 ? product.application.substring(0, 60) + '...' : product.application}</span>
+                                <span class="full-text hidden">{product.application}</span>
+                                {product.application.length > 60 && (
+                                    <button class="text-blue-600 hover:underline text-xs font-bold toggle-btn ml-1">Show more</button>
+                                )}
+                            </div>
+                            <div class="hidden md:block">
+                                {product.application}
+                            </div>
+                        </td>
                         <td class="px-6 py-4">
                             <a href={product.pdf} target="_blank" class="font-medium text-blue-600 hover:underline">Download</a>
                         </td>
@@ -157,6 +168,21 @@ const sliderImages = [
       el: ".swiper-pagination",
       clickable: true,
     },
+  });
+
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const container = target.parentElement;
+      const shortText = container?.querySelector('.short-text');
+      const fullText = container?.querySelector('.full-text');
+      
+      if (shortText && fullText) {
+        shortText.classList.toggle('hidden');
+        fullText.classList.toggle('hidden');
+        target.textContent = shortText.classList.contains('hidden') ? 'Show less' : 'Show more';
+      }
+    });
   });
 </script>
 

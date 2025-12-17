@@ -1,31 +1,135 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import img1 from '../assets/img/1-1024x229.png';
+import img2 from '../assets/img/2-1024x229.png';
+import img3 from '../assets/img/3-1024x229.png';
+import img4 from '../assets/img/4-1024x229.png';
+import img5 from '../assets/img/5-1024x229.png';
+import img6 from '../assets/img/6-1024x229.png';
+import img7 from '../assets/img/7-1024x229.png';
+
+const products = [
+    {
+        id: 1,
+        grade: "HB-1140 (Red)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_RED_).pdf"
+    },
+    {
+        id: 2,
+        grade: "HB -1140 (Green)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_GREEN_).pdf"
+    },
+    {
+        id: 3,
+        grade: "HB-1140 (Brown)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_BROWN_).pdf"
+    },
+    {
+        id: 4,
+        grade: "HB-1140 (Cherry)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_CHERRY_).pdf"
+    },
+    {
+        id: 5,
+        grade: "HB-1140 (Blue)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_BLUE_).pdf"
+    },
+    {
+        id: 6,
+        grade: "HB-1140 (Dark Brown)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_DARK_BROWN_).pdf"
+    },
+    {
+        id: 7,
+        grade: "HB-1140 (Maroon Brown)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_MAROON_BROWN_).pdf"
+    },
+    {
+        id: 8,
+        grade: "HB-1140 (Natural Yellow)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_NATURAL_YELLOW_).pdf"
+    },
+    {
+        id: 9,
+        grade: "HB-1140 (Light Brown)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_LIGHT_BROWN_).pdf"
+    },
+    {
+        id: 10,
+        grade: "HB-1140 (Grey)",
+        application: "Cooker handle, Knobs , Side handle, Electrical accessories, Starter buttons, Auto parts, Textile parts, Excellent heat resistance, Mechanical strength, Electrical properties and are used in electronics and industrial market .",
+        pdf: "https://web.archive.org/web/20180826112706/http://www.hibcolite.com/downloads/HB-1140(_GREY_).pdf"
+    }
+];
+
+const sliderImages = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img7,
+    img6
+];
 ---
 
 <MainLayout title="Color Grades | HibcoLite">
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-4xl font-bold text-gray-900 mb-6">Color Grades</h1>
     <p class="text-lg text-gray-700 mb-8">
       We offer moulding powders in a wide variety of colors to suit specific aesthetic and functional requirements.
     </p>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="text-center">
-        <div class="w-full h-24 bg-black rounded shadow-md mb-2"></div>
-        <span class="font-medium">Jet Black</span>
+    <!-- Image Slider -->
+    <div class="swiper colorGradeSwiper w-full rounded-lg shadow-md mb-8 overflow-hidden bg-gray-100">
+      <div class="swiper-wrapper">
+        {sliderImages.map((image) => (
+          <div class="swiper-slide">
+            <Image src={image} alt="Color Grade Banner" class="w-full h-auto object-cover" />
+          </div>
+        ))}
       </div>
-      <div class="text-center">
-        <div class="w-full h-24 bg-red-800 rounded shadow-md mb-2"></div>
-        <span class="font-medium">Brown / Red</span>
-      </div>
-      <div class="text-center">
-        <div class="w-full h-24 bg-green-900 rounded shadow-md mb-2"></div>
-        <span class="font-medium">Forest Green</span>
-      </div>
-      <div class="text-center">
-        <div class="w-full h-24 bg-blue-900 rounded shadow-md mb-2"></div>
-        <span class="font-medium">Navy Blue</span>
-      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Sr. No.</th>
+                    <th scope="col" class="px-6 py-3">Grade</th>
+                    <th scope="col" class="px-6 py-3">Application</th>
+                    <th scope="col" class="px-6 py-3">PDF File</th>
+                </tr>
+            </thead>
+            <tbody>
+                {products.map((product) => (
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{product.id}</td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{product.grade}</td>
+                        <td class="px-6 py-4">{product.application}</td>
+                        <td class="px-6 py-4">
+                            <a href={product.pdf} target="_blank" class="font-medium text-blue-600 hover:underline">Download</a>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     </div>
     
     <p class="mt-8 text-sm text-gray-500">
@@ -33,3 +137,34 @@ import MainLayout from '../layouts/MainLayout.astro';
     </p>
   </div>
 </MainLayout>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  new Swiper(".colorGradeSwiper", {
+    modules: [Navigation, Pagination, Autoplay],
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+<style>
+  :global(.swiper-button-next), :global(.swiper-button-prev) {
+    color: #2563eb; /* Tailwind blue-600 */
+  }
+  :global(.swiper-pagination-bullet-active) {
+    background-color: #2563eb;
+  }
+</style>

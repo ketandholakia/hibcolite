@@ -1,26 +1,77 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/img/banner02.jpg';
 ---
 
 <MainLayout title="R & D | HibcoLite">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold text-gray-900 mb-6">Research & Development</h1>
+  <!-- Page Header -->
+  <div slot="before-main" class="relative w-full h-[300px] md:h-[400px] mt-20">
+    <Image src={bannerImage} alt="Research and Development" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white tracking-wide uppercase">Research & Development</h1>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto">
     
-    <div class="grid md:grid-cols-2 gap-8 items-center mb-10">
-      <div>
-        <p class="text-lg text-gray-700 mb-4">
-          Innovation is at the core of our operations. Our R&D team works tirelessly to improve existing formulations and develop new grades suitable for emerging applications.
-        </p>
-        <ul class="list-disc pl-5 space-y-2 text-gray-700">
-          <li>Advanced Material Testing</li>
-          <li>Custom Formulation Development</li>
-          <li>Quality Assurance & Compliance</li>
-          <li>Sustainability Research</li>
-        </ul>
-      </div>
-      <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-        <span class="text-gray-500 font-semibold">R&D Lab Image</span>
-      </div>
+    <div class="grid md:grid-cols-1 gap-12">
+        <!-- Introduction -->
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Innovation Driven Quality</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                At Hindustan Backlite Company, Research & Development is the backbone of our innovation and quality assurance. 
+                We are committed to continuous improvement in our product formulations and manufacturing processes to meet the evolving needs of the electrical, automotive, and consumer goods industries.
+            </p>
+        </div>
+
+        <!-- Capabilities Section -->
+        <div class="grid md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-gray-50 p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="w-2 h-8 bg-blue-600 mr-3 rounded-sm"></span>
+                    Laboratory Infrastructure
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    Our facility is equipped with a state-of-the-art laboratory featuring advanced testing equipment for rigorous analysis of raw materials and finished goods. This ensures that every batch of Hibcolite moulding powder meets international standards.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                    <li>Raw Material Analysis</li>
+                    <li>Flow & Cure Testing</li>
+                    <li>Mechanical & Electrical Property Testing</li>
+                    <li>Color Matching & Consistency</li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="w-2 h-8 bg-blue-600 mr-3 rounded-sm"></span>
+                    Product Development
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    Our team of experienced chemists and engineers works closely with clients to develop custom grades of Phenolic Moulding Compounds. Whether it's enhanced heat resistance, specific electrical properties, or unique colors, we tailor our solutions to your requirements.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                    <li>Custom Grade Formulation</li>
+                    <li>Pilot Plant for Trial Runs</li>
+                    <li>Process Optimization</li>
+                    <li>Technical Support & Troubleshooting</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Commitment Section -->
+        <div class="bg-blue-50 rounded-xl p-8 md:p-12 mt-8 border border-blue-100">
+            <div class="md:flex items-center justify-between gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Commitment to Excellence</h3>
+                    <p class="text-gray-700">
+                        We believe that quality is not just a requirement but a philosophy. Our R&D efforts are recognized for their contribution to the field of thermosetting plastics, ensuring that Hibcolite remains a trusted name in the industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
   </div>
 </MainLayout>

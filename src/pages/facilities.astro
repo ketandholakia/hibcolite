@@ -1,0 +1,136 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+// Using rnd.jpg as a placeholder. You may want to replace this with a specific facility image.
+import bannerImage from '../assets/img/rnd.jpg';
+import imgCupFlow from '../assets/img/hydraulic-cup-flow-testing-machine.png';
+import imgMeltingPoint from '../assets/img/digital-melting-point-apparatus.png';
+import imgInjectionFlow from '../assets/img/hydraulic-injection-powder-flow-testing-machine.png';
+import imgCrossBreaking from '../assets/img/hydraulic-cross-breaking-and-tensile-mold-machine-for-testing.png';
+import imgImpact from '../assets/img/impact-tester.png';
+import imgSev from '../assets/img/sev-make-0-30-kv-servo.png';
+import imgLiquidBath from '../assets/img/liquid-bath-with-temp-controller-and-brass-electrodes.png';
+---
+
+<MainLayout title="Facilities & Capability | HibcoLite">
+  <!-- Page Header -->
+  <div slot="before-main" class="relative w-full h-[300px] md:h-[400px] mt-20">
+    <Image src={bannerImage} alt="Facilities and Capabilities" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white tracking-wide uppercase">Facilities & Capability</h1>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    
+    <div class="grid md:grid-cols-1 gap-12">
+        <!-- Introduction -->
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">World-Class Infrastructure</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                HibcoLite operates a modern manufacturing facility designed for efficiency, consistency, and scalability. 
+                Our infrastructure enables us to produce high-quality Phenolic Moulding Compounds that meet the diverse requirements of our global clientele.
+            </p>
+        </div>
+
+        <!-- Equipment & Infrastructure Section -->
+        <div class="grid md:grid-cols-2 gap-12 items-center mt-8 mb-12">
+            
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">State-of-the-Art Equipment</h3>
+                <p class="text-gray-700 mb-6">
+                    Our facility is equipped with advanced machinery and testing instruments to ensure precision in every batch. We maintain a comprehensive range of equipment for both production and quality control.
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1.5 w-2 h-2 bg-blue-600 rounded-full flex-shrink-0"></span>
+                        <span><strong>Testing:</strong> Universal Testing Machine, Impact Tester (Izod/Charpy), MFI Tester, Dielectric Strength Tester.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1.5 w-2 h-2 bg-blue-600 rounded-full flex-shrink-0"></span>
+                        <span><strong>Processing:</strong> High-speed Mixers, Twin Screw Extruders, Two Roll Mills, and Compression Moulding Presses.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1.5 w-2 h-2 bg-blue-600 rounded-full flex-shrink-0"></span>
+                        <span><strong>Analysis:</strong> Spectrophotometers for color matching and moisture analyzers.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Capabilities Section -->
+        <div class="grid md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-gray-50 p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="w-2 h-8 bg-blue-600 mr-3 rounded-sm"></span>
+                    Manufacturing Capacity
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    We operate high-capacity production lines capable of handling large-scale orders efficiently. Our plant layout is optimized for smooth material flow, from raw material intake to finished product packaging.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                    <li>Advanced Kneading & Rolling Lines</li>
+                    <li>Automated Grinding Systems</li>
+                    <li>Large-scale Blending Units</li>
+                    <li>Dust Control Systems</li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="w-2 h-8 bg-blue-600 mr-3 rounded-sm"></span>
+                    Quality Assurance
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    Quality is integrated into our manufacturing process. Our in-house testing facilities allow us to monitor critical parameters in real-time, ensuring that our products consistently meet specifications.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                    <li>In-process Quality Checks</li>
+                    <li>Batch-to-Batch Consistency Analysis</li>
+                    <li>Final Product Inspection</li>
+                    <li>Traceability Systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="bg-blue-50 rounded-xl p-8 md:p-12 mt-8 border border-blue-100">
+            <div class="md:flex items-center justify-between gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Sustainable Operations</h3>
+                    <p class="text-gray-700">
+                        We are committed to environmentally responsible manufacturing. Our facilities employ energy-efficient machinery and waste reduction protocols to minimize our environmental footprint while maximizing operational efficiency.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Equipment List -->
+        <div class="mt-16">
+            <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Key Laboratory & Testing Equipment</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                    { title: "HYDRAULIC CUP FLOW TESTING MACHINE", img: imgCupFlow },
+                    { title: "DIGITAL MELTING POINT APPARATUS", img: imgMeltingPoint },
+                    { title: "HYDRAULIC INJECTION POWDER FLOW TESTING MACHINE", img: imgInjectionFlow },
+                    { title: "HYDRAULIC CROSS BREAKING AND TENSILE MOLD MACHINE FOR TESTING", img: imgCrossBreaking },
+                    { title: "TENSILE TESTING MACHINE", img: bannerImage },
+                    { title: "IMPACT TESTER", img: imgImpact },
+                    { title: "SEV MAKE 0-30 KV/25mA A.C. HIGH VOLTAGE UNIT", img: imgSev },
+                    { title: "LIQUID BATH WITH TEMP CONTROLLER AND BRASS ELECTRODES PER LS/867", img: imgLiquidBath }
+                ].map((item) => (
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all group">
+                        <div class="h-48 overflow-hidden bg-gray-100 relative">
+                            <Image src={item.img} alt={item.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-gray-800 text-xs md:text-sm uppercase leading-tight">{item.title}</h4>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+    </div>
+  </div>
+</MainLayout>

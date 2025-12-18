@@ -14,14 +14,17 @@ const resolvePath = (path: string) => {
 
 // Updated Menu Structure to match your new pages exactly
 const navItems = [
-  { href: '/', text: 'HOME' },
+  { 
+    href: '/', text: 'HOME'
+  },
   { 
     text: 'ABOUT US', 
     children: [
       // Links to src/pages/company-profile.astro
       { href: '/company-profile', text: 'COMPANY PROFILE' },
       // Links to src/pages/r-d.astro
-      { href: '/r-d', text: 'R & D' }
+      { href: '/r-d', text: 'R & D' },
+      { href: '/facilities', text: 'FACILITIES & CAPABILITY' }
     ]
   },
   { 
